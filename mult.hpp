@@ -14,14 +14,15 @@ class Mult : public Base {
          std::string stringify() {
                 return val1->stringify() + " * " + val2->stringify();
         }
-	Iterator* create_iterator(){
-                Iterator *it = new BinaryIterator(this);
-		return it;
+
+         Iterator* create_iterator(){
+                Iterator* it = new BinaryIterator(this);
+                return it;
         }
-        Base* get_left(){
+         Base* get_left(){
                 return val1;
         }
-        Base* get_right() {
+         Base* get_right() {
                 return val2;
         }
         private:

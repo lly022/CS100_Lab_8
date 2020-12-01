@@ -17,9 +17,9 @@ class Pow : public Base {
                 return val1->stringify() + " ** " + val2->stringify();
         }
 	Iterator* create_iterator(){
-                Iterator *it = new BinaryIterator(this);
-		return it;
-        }
+                Iterator* it = new BinaryIterator(this);
+                return it;
+	}
         Base* get_left(){
                 return val1;
         }

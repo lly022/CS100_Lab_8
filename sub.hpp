@@ -13,9 +13,9 @@ class Sub : public Base {
         double evaluate() { return op1->evaluate()-op2->evaluate(); }
         std::string stringify() { return op1->stringify() + "-" + op2->stringify(); }
 	Iterator* create_iterator(){
-                Iterator *it = new BinaryIterator(this);
-		return it;
-        }
+                Iterator* it = new BinaryIterator(this);
+                return it;
+	}
         Base* get_left(){
                 return op1;
         }
