@@ -3,7 +3,6 @@
 
 #include "base.hpp"
 #include <string>
-#include "iterator.hpp"
 
 class Add : public Base {
         public:
@@ -15,7 +14,7 @@ class Add : public Base {
                 return val1->stringify() + " + " + val2->stringify();
         }
 	Iterator* create_iterator(){
-                return BinaryIterator(this);
+		return new BinaryIterator(this);
         }
         Base* get_left(){
                 return val1;
