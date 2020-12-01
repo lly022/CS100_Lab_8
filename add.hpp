@@ -15,7 +15,8 @@ class Add : public Base {
                 return val1->stringify() + " + " + val2->stringify();
         }
 	Iterator* create_iterator(){
-                return BinaryIterator(this);
+                Iterator *it = new BinaryIterator(this);
+		return it;
         }
         Base* get_left(){
                 return val1;
