@@ -4,7 +4,7 @@
 #include <string>
 
 #include "iterator.hpp"
-class Iterator;
+#include "visitor.hpp"
 
 class Iterator;
 
