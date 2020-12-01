@@ -14,6 +14,7 @@ class Mult : public Base {
          std::string stringify() {
                 return val1->stringify() + " * " + val2->stringify();
         }
+
          Iterator* create_iterator(){
                 Iterator* it = new BinaryIterator(this);
                 return it;

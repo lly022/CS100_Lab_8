@@ -13,9 +13,10 @@ class Add : public Base {
          std::string stringify() {
                 return val1->stringify() + " + " + val2->stringify();
         }
-	Iterator* create_iterator(){
-		return new BinaryIterator(this);
-        }
+	      Iterator* create_iterator(){
+                Iterator *it = new BinaryIterator(this);
+		            return it;
+       }
         Base* get_left(){
                 return val1;
         }

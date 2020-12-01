@@ -6,11 +6,29 @@
 #include "base.hpp"
 #include "op.hpp"
 #include "rand.hpp"
-#include "Div.hpp"
 #include "mult.hpp"
-#include "sub.hpp"
+#include "Div.hpp"
 #include "add.hpp"
+#include "sub.hpp"
 #include "pow.hpp"
+
+TEST(IteratorTest, NullFirstTest){
+	Base *num1 = new Op(8);
+
+	Iterator *it = num1->create_iterator();
+	ASSERT_TRUE(it->current() == nullptr);
+	it->first();
+	ASSERT_TRUE(it->current() == nullptr);		
+}
+
+TEST(IteratorTest, NullNextTest){
+	Base *num1 = new Op(8);
+
+	Iterator *it = num1->create_iterator();
+	ASSERT_TRUE(it->current() == nullptr);
+  it->next();
+	ASSERT_TRUE(it->current() == nullptr);
+  }
 
 TEST(IteratorTest, Bin_is_done) {
 	Base* num1 = new Op(2);
@@ -42,10 +60,26 @@ TEST(IteratorTest, Bin_current) {
         Div* test = new Div(tree1,tree2);
         Iterator* it = test->create_iterator();
         EXPECT_EQ(it->current()->evaluate(), 5);
-	it->next();
-	EXPECT_EQ(it->current()->evaluate(), 20);
-	it->next();
-	ASSERT_TRUE(it->current() == nullptr);
+	      it->next();
+	      EXPECT_EQ(it->current()->evaluate(), 20);
+        it->next();
+	      ASSERT_TRUE(it->current() == nullptr);
+  }
+
+TEST(IteratorTest, NullDoneTest){
+	Base *num1 = new Op(8);
+	
+	Iterator *it = num1->create_iterator();
+	
+	ASSERT_TRUE(it->is_done());	
+}
+
+TEST(IteratorTest, NullCurrentTest){
+	Base* num1 = new Op(8);
+
+	Iterator *it = num1->create_iterator();
+
+	EXPECT_EQ(it->current(), nullptr);	
 }
 
 TEST(IteratorTest, Bin_first) {
@@ -64,8 +98,8 @@ TEST(IteratorTest, Bin_first) {
         EXPECT_EQ(it->current()->evaluate(), 20);
         it->next();
         ASSERT_TRUE(it->current() == nullptr);
-	it->first();
-	EXPECT_EQ(it->current()->evaluate(), 5);
+	      it->first();
+	      EXPECT_EQ(it->current()->evaluate(), 5);
 }
 
 TEST(IteratorTest, Bin_next) {
@@ -86,7 +120,7 @@ TEST(IteratorTest, Bin_next) {
         ASSERT_TRUE(it->current() == nullptr);
         it->first();
         EXPECT_EQ(it->current()->evaluate(), 5);
-	it->next();
+	      it->next();
         EXPECT_EQ(it->current()->evaluate(), 20);
         it->next();
         ASSERT_TRUE(it->current() == nullptr);
