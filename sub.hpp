@@ -22,6 +22,10 @@ class Sub : public Base {
         Base* get_right() {
                 return op2;
         }
+	void accept(CountVisitor* visitor){
+                visitor->visit_sub();
+        }
+
 };
 
 #endif //__OP_HPP__

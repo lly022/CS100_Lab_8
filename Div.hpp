@@ -40,6 +40,10 @@ class Div : public Base {
 	Base* get_right() {
 		return op2;
 	}
+	void accept(CountVisitor* visitor){
+                visitor->visit_div();
+        }
+
 };
 
 #endif //__OP_HPP__

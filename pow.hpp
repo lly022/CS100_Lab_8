@@ -26,6 +26,9 @@ class Pow : public Base {
         Base* get_right() {
                 return val2;
         }
+	void accept(CountVisitor* visitor){
+                visitor->visit_pow();
+        }
         private:
          Base* val1;
          Base* val2;
