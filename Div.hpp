@@ -30,7 +30,8 @@ class Div : public Base {
 		} 
 	}
 	Iterator* create_iterator(){
-		return BinaryIterator(this);
+                Iterator* it = new BinaryIterator(this);
+                return it;
 	}
 	Base* get_left(){
 		return op1;
