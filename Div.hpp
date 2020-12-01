@@ -3,6 +3,7 @@
 
 #include "base.hpp"
 #include <iostream>
+#include "iterator.hpp"
 
 class Div : public Base {
     private:
@@ -27,6 +28,15 @@ class Div : public Base {
 		else{
 			return op1->stringify() + "/" + op2->stringify();
 		} 
+	}
+	Iterator* create_iterator(){
+		return BinaryIterator(this);
+	}
+	Base* get_left(){
+		return op1;
+	}
+	Base* get_right() {
+		return op2;
 	}
 };
 
