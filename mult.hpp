@@ -3,6 +3,7 @@
 
 #include "base.hpp"
 #include <string>
+#include "iterator.hpp"
 
 class Mult : public Base {
         public:
@@ -12,6 +13,15 @@ class Mult : public Base {
         }
          std::string stringify() {
                 return val1->stringify() + " * " + val2->stringify();
+        }
+	Iterator* create_iterator(){
+                return BinaryIterator(this);
+        }
+        Base* get_left(){
+                return val1;
+        }
+        Base* get_right() {
+                return val2;
         }
         private:
          Base* val1;
