@@ -226,4 +226,52 @@ TEST(VisitorTest, IteratorTestWithVisitor){
         EXPECT_EQ(visit->add_count(), 0);
 }
 
+TEST(VisitorTest, VisitorTest5) {
+        CountVisitor* visitor = new CountVisitor();
+        Base* num1 = new Op(1);
+        Base* num2 = new Op(2);
+        Base* num3 = new Rand();
+        Base* num4 = new Rand();
+
+        Add* tree1 = new Add(num1,num2);
+        Pow* tree2 = new Pow(num3,num4);
+
+        Add* dummy = new Add(tree1,tree2);
+
+        PreorderIterator* test = new PreorderIterator(dummy);
+        test->first();
+        while(!test->is_done()){
+                test->current()->accept(visitor);
+                test->next();
+        }
+        EXPECT_EQ(visitor->add_count(), 1);
+        EXPECT_EQ(visitor->op_count(), 2);
+        EXPECT_EQ(visitor->rand_count(), 2);
+        EXPECT_EQ(visitor->pow_count(), 1);
+}
+
+TEST(VisitorTest, VisitorTest6) {
+        CountVisitor* visitor = new CountVisitor();
+        Base* num1 = new Rand();
+        Base* num2 = new Rand();
+        Base* num3 = new Rand();
+        Base* num4 = new Rand();
+
+        Sub* tree1 = new Sub(num1,num2);
+        Div* tree2 = new Div(num3,num4);
+
+        Add* dummy = new Add(tree1,tree2);
+
+        PreorderIterator* test = new PreorderIterator(dummy);
+        test->first();
+        while(!test->is_done()){
+                test->current()->accept(visitor);
+                test->next();
+        }
+        EXPECT_EQ(visitor->add_count(), 0);
+        EXPECT_EQ(visitor->sub_count(), 1);
+        EXPECT_EQ(visitor->rand_count(), 4);
+        EXPECT_EQ(visitor->div_count(), 1);
+}
+
 #endif //__VISITOR_TEST_HPP__
